@@ -85,7 +85,7 @@
 <!-- Canlı pano: /api/canli-ilanlar üzerinden https://www.sahibinden.com ilan bağlantılarını kalkanla sunar -->
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
 <script>
 try {
@@ -164,7 +164,9 @@ try {
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; }
-  body { background: var(--bg); color: var(--text); width: 100vw; height: 100vh; overflow: hidden; position: relative; }
+  :root { --target-size: 24px; --mob-sheet-h: 50dvh; }
+  @media (pointer: coarse) { :root { --target-size: 44px; } }
+  body { background: var(--bg); color: var(--text); width: 100vw; width: 100dvw; height: 100vh; height: 100dvh; overflow: hidden; position: relative; }
 
   /* A) SOL ÜST KOMPAKT YÜZEN ADA (.floating-nav-island) — %100 Tema Uyumlu (Sıfır Siyah Yama, 1366/1440px Uyumlu Kısa Ada) */
   .floating-nav-island {
@@ -389,7 +391,7 @@ try {
   .hr-kpi-sub { font-size: 9.5px; color: var(--text-sec); font-weight: 600; }
 
   /* %100 SAF TAM EKRAN (100VW x 100VH FULL-BLEED) HARİTA KANVASI */
-  .main { position: fixed; inset: 0; width: 100vw; height: 100vh; overflow: hidden; z-index: 1; display: block; }
+  .main { position: fixed; inset: 0; width: 100vw; width: 100dvw; height: 100vh; height: 100dvh; overflow: hidden; z-index: 1; display: block; }
   .map-stage { position: absolute; inset: 0; width: 100%; height: 100%; display: flex; flex-direction: column; overflow: hidden; }
   #map { flex: 1; width: 100%; height: 100%; z-index: 1; background: var(--bg); }
   .leaflet-popup-pane { z-index: 1500 !important; }
@@ -1521,6 +1523,7 @@ try {
     overflow: auto;
     max-inline-size: 100%;
     max-block-size: 46vh;
+    max-block-size: 46dvh;
     container-type: inline-size;
     border: 1px solid var(--border);
     border-radius: 10px;
@@ -1531,6 +1534,17 @@ try {
     border-collapse: separate;
     border-spacing: 0;
     font-size: 11.2px;
+    --label-1: "Skor";
+    --label-2: "Kategori & Başlık";
+    --label-3: "Fiyat";
+    --label-4: "Gerçek m²";
+    --label-5: "Birim TL/m²";
+    --label-6: "Medyan Sapma";
+    --label-7: "Amortisman";
+    --label-8: "Eczane & ASM";
+    --label-9: "Ayak & Park";
+    --label-10: "Şerefiye";
+    --label-11: "Aksiyon";
   }
   table.borsa-table caption {
     position: absolute;
@@ -1582,22 +1596,82 @@ try {
     white-space: nowrap;
     font-size: 10.6px;
   }
-  @container (width < 600px) {
+  @container (width < 640px) {
     table.borsa-table, table.borsa-table thead, table.borsa-table tbody, table.borsa-table tr, table.borsa-table th, table.borsa-table td {
       display: block;
     }
+    table.borsa-table { background: transparent; padding: 6px; }
     table.borsa-table thead {
       display: none;
     }
     table.borsa-table tr {
-      margin-block-end: 1rem;
-      border: 1px solid var(--border);
+      margin-block-end: 10px;
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      background: var(--card);
+      overflow: hidden;
     }
     table.borsa-table tbody th {
-      position: sticky;
-      inset-block-start: 0;
-      z-index: 2;
+      position: static;
+      white-space: normal;
+      font-size: 11.5px;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border-strong);
+      background: var(--surface-solid);
     }
+    table.borsa-table tbody td {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      white-space: normal;
+      max-width: none !important;
+      text-align: right;
+      padding: 6px 10px;
+      font-size: 11.2px;
+      min-height: 32px;
+    }
+    table.borsa-table tbody td:not([colspan])::before {
+      font-weight: 800;
+      color: var(--muted);
+      text-align: left;
+      flex-shrink: 0;
+      font-size: 10.4px;
+    }
+    table.borsa-table tbody td:nth-of-type(1)::before { content: var(--label-1) ":"; }
+    table.borsa-table tbody td:nth-of-type(2)::before { content: var(--label-2) ":"; }
+    table.borsa-table tbody td:nth-of-type(3)::before { content: var(--label-3) ":"; }
+    table.borsa-table tbody td:nth-of-type(4)::before { content: var(--label-4) ":"; }
+    table.borsa-table tbody td:nth-of-type(5)::before { content: var(--label-5) ":"; }
+    table.borsa-table tbody td:nth-of-type(6)::before { content: var(--label-6) ":"; }
+    table.borsa-table tbody td:nth-of-type(7)::before { content: var(--label-7) ":"; }
+    table.borsa-table tbody td:nth-of-type(8)::before { content: var(--label-8) ":"; }
+    table.borsa-table tbody td:nth-of-type(9)::before { content: var(--label-9) ":"; }
+    table.borsa-table tbody td:nth-of-type(10)::before { content: var(--label-10) ":"; }
+    table.borsa-table tbody td:nth-of-type(11)::before { content: var(--label-11) ":"; }
+    table.borsa-table tbody td[colspan] { justify-content: center; text-align: center; }
+    table.borsa-table tbody td[colspan]::before { content: none; }
+  }
+
+  /* Borsa / Tablo Modu Üst Gezinme Çubuğu (Harita / Eczane dönüşü her ekranda tek dokunuş!) */
+  .borsa-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    background: var(--surface-solid);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    padding: 8px 10px;
+    box-shadow: var(--shadow-bento);
+    flex-shrink: 0;
+  }
+  .borsa-nav-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
   }
 
   /* Karşılaştırma Yüzen Çekmece Çubuğu */
@@ -1617,14 +1691,26 @@ try {
     gap: 10px;
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.65);
     font-size: 11.5px;
+    max-width: calc(100vw - 24px);
+    max-width: calc(100dvw - 24px);
   }
   .compare-floating-bar.visible { display: flex; }
 
   /* Modern Web Guidance: <dialog closedby="any"> Modal Stilleri (Koyu/Açık Her İki Temada da %100 WCAG AA Kontrast) */
+  dialog:modal {
+    overscroll-behavior: contain;
+  }
+  dialog::backdrop,
+  dialog.modern-modal::backdrop {
+    overflow: hidden;
+    overscroll-behavior: contain;
+  }
   dialog.modern-modal {
     margin: auto;
     width: min(1100px, 95vw);
+    width: min(1100px, calc(100dvw - 16px));
     max-height: 90vh;
+    max-height: 92dvh;
     background: #141619 !important;
     color: #f3f4f6 !important;
     border: 1px solid var(--border-strong);
@@ -1632,6 +1718,7 @@ try {
     padding: 0;
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
     overflow: hidden;
+    overscroll-behavior: contain;
   }
   dialog.modern-modal::backdrop {
     background-color: rgba(12, 13, 14, 0.76);
@@ -1644,13 +1731,18 @@ try {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
   }
   .modal-body {
     padding: 14px;
+    padding-bottom: max(14px, env(safe-area-inset-bottom));
     overflow-y: auto;
     max-height: calc(90vh - 56px);
+    max-height: calc(92dvh - 56px);
     background: #141619;
     color: #f3f4f6;
+    overscroll-behavior: contain;
   }
   .quad-grid {
     display: grid;
@@ -1665,9 +1757,25 @@ try {
     display: flex;
     flex-direction: column;
     gap: 7px;
+    min-width: 0;
   }
+  /* Duyarlı Modal & Pro Fizibilite Izgara Sınıfları */
+  .tv-thermo-kpi-grid { display: grid; grid-template-columns: 1.15fr 2fr; gap: 10px; align-items: stretch; }
+  .tv-kpi-3grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; font-size: 11.2px; }
+  .tv-sv-4grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .tv-tile-2x2 { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; height: 240px; }
+  .tv-ai-2grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; font-size: 11.5px; }
+  .tv-sektor-4grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .tv-ki-4grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; margin-bottom: 10px; }
+  .tv-3col-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 
   /* Yan Yana Karşılaştırma Tablosu */
+  .cmp-table-wrap {
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 10px;
+  }
   .cmp-table {
     width: 100%;
     border-collapse: collapse;
@@ -1727,62 +1835,194 @@ try {
     backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
   }
 
-  /* ── MOBİL / TABLET UYUMU (07.11.2026) ──────────────────────────────────────────────────────────
-     Önceden hiç duyarlı kural yoktu: panel min-width 410px, ada max-width calc(100vw-520px) idi; 375px ekranda
-     panel soldan taşıp kartları kesiyor, üst çubuk 774px'e uzuyordu. Masaüstü (>1100px) DEĞİŞMEDİ. */
+  /* ── MOBİL / TABLET UYUMU (22.11.2026 Tam Responsive Revizyonu) ───────────────────────────────── */
   @media (max-width: 1100px) {
-    .sidebar-wrap { width: 360px; min-width: 0; max-width: calc(100vw - 28px); }
+    .sidebar-wrap { width: 360px; min-width: 0; max-width: calc(100vw - 28px); max-width: calc(100dvw - 28px); }
     .floating-nav-island { max-width: calc(100vw - 420px); }
     body.panel-collapsed .floating-nav-island { max-width: calc(100vw - 80px); }
-    /* Eczane bilgi bandı: panelin (360px) soluna sığar, 2 sütun */
     .hospital-radar-banner { width: calc(100vw - 442px); min-width: 300px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .pegman-control { right: 388px; }
+    .map-floating-bento { width: min(410px, calc(100vw - 404px)); width: min(410px, calc(100dvw - 404px)); }
   }
   @media (max-width: 820px) {
-    /* Panel: alttan açılan çekmece (haritayı kapatmaz); "Paneli Gizle" aşağı kaydırır */
+    /* Alt Çekmece (Bottom Sheet): dinamik viewport birimi (dvh) + güvenli alan dolgusu */
     .sidebar-wrap {
-      top: auto; left: 8px; right: 8px; bottom: 8px;
+      top: auto;
+      left: max(8px, env(safe-area-inset-left));
+      right: max(8px, env(safe-area-inset-right));
+      bottom: max(8px, env(safe-area-inset-bottom));
       width: auto; min-width: 0; max-width: none;
-      height: 46vh; border-radius: 16px;
+      height: var(--mob-sheet-h, 50dvh);
+      max-height: calc(100dvh - 64px - env(safe-area-inset-top));
+      border-radius: 16px;
     }
-    body.panel-collapsed .sidebar-wrap { transform: translateY(calc(100% + 24px)); }
-    /* Üst ada: tam genişlik, taşarsa yana kayar */
-    .floating-nav-island, body.panel-collapsed .floating-nav-island {
-      left: 8px; right: 8px; top: 8px; max-width: none; width: auto; box-sizing: border-box;
-      overflow-x: auto; -webkit-overflow-scrolling: touch;
+    body.panel-collapsed .sidebar-wrap { transform: translateY(calc(100% + 36px)); }
+
+    /* Üst harita kontrolleri: Komuta Merkezi sağ panelin içinde olduğundan sol üst çakışma yaşamaz */
+    .leaflet-top.leaflet-left {
+      top: max(10px, env(safe-area-inset-top));
+      left: max(4px, env(safe-area-inset-left));
     }
-    .brand-sub { display: none; }
-    /* Alt katman çubuğu: panelin üstünde, yana kayar */
+    .floating-reopen-btn {
+      top: max(10px, env(safe-area-inset-top));
+      right: max(8px, env(safe-area-inset-right));
+      height: 38px;
+      padding: 0 11px;
+      font-size: 11px;
+      border-radius: 10px;
+    }
+
+    /* Alt katman çubuğu & Harita popover & Pegman & Karşılaştırma çubuğu çakışmadan üst üste dizilir */
     .bottom-layer-bar {
-      left: 8px; right: 8px; bottom: calc(46vh + 16px); max-width: none;
-      overflow-x: auto; box-sizing: border-box; -webkit-overflow-scrolling: touch;
+      left: max(8px, env(safe-area-inset-left));
+      right: max(8px, env(safe-area-inset-right));
+      bottom: calc(var(--mob-sheet-h, 50dvh) + 14px + env(safe-area-inset-bottom));
+      max-width: none;
+      height: auto;
+      min-height: 38px;
+      padding: 4px 6px;
+      overflow-x: auto;
+      box-sizing: border-box;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
-    body.panel-collapsed .bottom-layer-bar { bottom: 12px; }
-    /* Canlı durum şeridi: alt sağ yerine üst adanın altında, satır kaydırır */
-    #canli-backend-bar {
-      top: 60px !important; bottom: auto !important; left: 8px !important; right: 8px !important;
-      border-radius: 12px !important; flex-wrap: wrap; justify-content: center; font-size: 10px !important;
-      padding: 4px 8px !important; gap: 6px !important;
+    .bottom-layer-bar::-webkit-scrollbar { display: none; height: 0; }
+    .bottom-layer-bar .gmaps-pill { flex-shrink: 0; }
+    body.panel-collapsed .bottom-layer-bar { bottom: max(12px, env(safe-area-inset-bottom)); }
+
+    .map-floating-bento {
+      left: max(8px, env(safe-area-inset-left));
+      right: max(8px, env(safe-area-inset-right));
+      width: auto;
+      max-width: none;
+      bottom: calc(var(--mob-sheet-h, 50dvh) + 58px + env(safe-area-inset-bottom));
+      max-height: 36dvh;
+      overflow-y: auto;
+      z-index: 468;
+      padding: 10px 12px;
     }
-    .leaflet-top.leaflet-left { top: 108px; }
-    /* Eczane bandı: durum şeridinin altında, tam genişlik, uzunsa kayar */
+    body.panel-collapsed .map-floating-bento { bottom: calc(58px + env(safe-area-inset-bottom)); }
+
+    .pegman-control, body.panel-collapsed .pegman-control {
+      right: max(10px, env(safe-area-inset-right));
+      bottom: calc(var(--mob-sheet-h, 50dvh) + 60px + env(safe-area-inset-bottom));
+    }
+    body.panel-collapsed .pegman-control { bottom: calc(60px + env(safe-area-inset-bottom)); }
+
+    .compare-floating-bar {
+      left: max(8px, env(safe-area-inset-left));
+      right: max(8px, env(safe-area-inset-right));
+      transform: none;
+      width: auto;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 14px;
+      bottom: calc(var(--mob-sheet-h, 50dvh) + 58px + env(safe-area-inset-bottom));
+    }
+    body.panel-collapsed .compare-floating-bar { bottom: calc(58px + env(safe-area-inset-bottom)); }
+
+    /* Eczane radar bandı, Placer HUD, X-Ray lejant & 360° Sokak Görünümü yüzen kartı */
     .hospital-radar-banner {
-      top: 108px; left: 8px; right: 8px; width: auto; min-width: 0; box-sizing: border-box;
-      grid-template-columns: repeat(2, minmax(0, 1fr)); max-height: 26vh; overflow-y: auto;
+      top: calc(56px + env(safe-area-inset-top));
+      left: max(8px, env(safe-area-inset-left));
+      right: max(8px, env(safe-area-inset-right));
+      width: auto; min-width: 0; box-sizing: border-box;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-height: 22dvh;
+      overflow-y: auto;
     }
     .hr-kpi-card { min-width: 0; }
-    .pegman-control, body.panel-collapsed .pegman-control { right: 12px; bottom: calc(46vh + 64px); }
-    body.panel-collapsed .pegman-control { bottom: 64px; }
     .hr-kpi-sub { overflow-wrap: anywhere; }
+    #placer-live-hud {
+      top: calc(56px + env(safe-area-inset-top)) !important;
+      left: 8px !important; right: 8px !important;
+      transform: none !important;
+      white-space: normal !important;
+      flex-wrap: wrap !important;
+      border-radius: 12px !important;
+      padding: 6px 10px !important;
+      font-size: 11px !important;
+    }
+    #xray-lejant {
+      left: 8px !important; right: 8px !important; max-width: none !important;
+      bottom: calc(var(--mob-sheet-h, 50dvh) + 58px + env(safe-area-inset-bottom)) !important;
+    }
+    body.panel-collapsed #xray-lejant { bottom: calc(58px + env(safe-area-inset-bottom)) !important; }
+    .sv-floating-card {
+      left: 8px; right: 8px;
+      bottom: max(10px, env(safe-area-inset-bottom));
+      width: auto;
+      max-height: 36dvh;
+      overflow-y: auto;
+    }
 
-    /* Tablo (borsa) görünümü: ızgaralar tek/çift sütuna iner, taşma biter */
-    .borsa-stage { padding: 108px 10px 12px 10px; }
+    /* Tablo (borsa) görünümü */
+    .borsa-stage {
+      padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+    }
     .borsa-kpi-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .borsa-mid-grid { grid-template-columns: minmax(0, 1fr); }
     .borsa-kpi-box, .borsa-panel { min-width: 0; }
-    .borsa-kpi-box .k-val { font-size: 17px; overflow-wrap: anywhere; }
-    .m-bar-row { grid-template-columns: 96px minmax(0, 1fr) 82px; }
+    .borsa-kpi-box .k-val { font-size: 16.5px; overflow-wrap: anywhere; }
+    .m-bar-row { grid-template-columns: 92px minmax(0, 1fr) 78px; }
     .top15-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .table-wrapper { max-block-size: 62dvh; }
+
+    /* Modal pencereler (<dialog>) */
+    dialog.modern-modal {
+      width: calc(100dvw - 8px);
+      max-width: none;
+      max-height: 94dvh;
+      border-radius: 14px;
+    }
+    .modal-head { padding: 10px 12px; }
+    .modal-head h2 { font-size: 12.5px !important; line-height: 1.3; }
+    .modal-body { padding: 10px; max-height: calc(94dvh - 54px); }
+    .quad-grid { grid-template-columns: 1fr; }
+    .tv-thermo-kpi-grid { grid-template-columns: 1fr; }
+    .tv-sv-4grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tv-sektor-4grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tv-ki-4grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tv-ai-2grid { grid-template-columns: 1fr; }
+    .cmp-table th { width: 118px; min-width: 118px; font-size: 10.5px; position: sticky; left: 0; z-index: 2; }
+    .cmp-table td { min-width: 170px; font-size: 11px; }
+  }
+  @media (max-width: 560px) {
+    .hospital-radar-banner { grid-template-columns: 1fr; }
+    .borsa-kpi-row { grid-template-columns: 1fr; }
+    .top15-grid { grid-template-columns: 1fr; }
+    .m-bar-row { grid-template-columns: 82px minmax(0, 1fr) 72px; font-size: 10px; }
+    .tv-kpi-3grid, .tv-3col-grid { grid-template-columns: 1fr; }
+    .tv-tile-2x2 { height: auto; grid-template-rows: auto; grid-auto-rows: 132px; }
+    .tv-modal-top-card .tv-head-row-wrap { min-width: 0 !important; width: 100%; }
+    #panel-filter-drawer .panel-select-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 420px) {
+    .tv-sv-4grid, .tv-sektor-4grid, .tv-ki-4grid { grid-template-columns: 1fr; }
+    .tv-tile-2x2 { grid-template-columns: 1fr; grid-auto-rows: 145px; }
+  }
+  @media (pointer: coarse) {
+    .gmaps-pill, .floating-reopen-btn, .sh-floating-open-btn,
+    .popover-btn-primary, .popover-btn-secondary, .popover-btn-icon,
+    .sh-mini-btn, .sh-chip-pill, .btn-primary, .btn-amber, .btn-cmp-toggle, .btn-outline,
+    .compass-btn, .tv-modal-tab, dialog.modern-modal .jump-btn,
+    .borsa-top-bar button, .borsa-top-bar a,
+    #panel-filter-drawer select, #panel-filter-drawer .jump-btn {
+      min-height: var(--target-size, 44px);
+    }
+    .popover-close-btn { min-width: var(--target-size, 44px); min-height: var(--target-size, 44px); }
+    .popover-btn-icon { min-width: var(--target-size, 44px); }
+    #panel-filter-drawer select,
+    .tv-db-strip input[type="number"],
+    .tv-db-strip input[type="text"] {
+      font-size: 16px !important;
+      min-height: 44px;
+    }
+    .btn-row { flex-wrap: wrap; }
+    .card-spark-bar-row { grid-template-columns: 1fr 1fr; }
+    .mini-spark-svg { display: none; }
   }
   /* ── SAHİBİNDEN TARZI GELİŞMİŞ SOL FİLTRE PANELİ (#sh-filter-rail) ── */
   .visually-hidden {
@@ -2183,13 +2423,20 @@ try {
   }
   body.sh-filters-open .sh-floating-open-btn { display: none; }
   @media (max-width: 820px) {
-    .sh-floating-open-btn { top: 106px; left: 8px; height: 32px; font-size: 11px; }
+    .sh-floating-open-btn {
+      top: max(10px, env(safe-area-inset-top));
+      left: calc(50px + env(safe-area-inset-left));
+      height: 38px;
+      padding: 0 11px;
+      font-size: 11.2px;
+    }
     .sh-filter-rail {
-      top: 58px;
-      left: 8px;
-      right: 8px;
-      bottom: 10px;
+      top: max(10px, env(safe-area-inset-top));
+      left: max(8px, env(safe-area-inset-left));
+      right: max(8px, env(safe-area-inset-right));
+      bottom: max(10px, env(safe-area-inset-bottom));
       width: auto;
+      max-width: none;
       z-index: 620;
     }
   }
@@ -2541,6 +2788,17 @@ try {
 
 <!-- MOD 3: EKONOMETRİK BORSA TABLOSU & MAHALLE ANALİTİĞİ (Tam Ekran Bloomberg Modu) -->
 <section class="borsa-stage" id="borsa-view-stage" aria-label="Ekonometrik Borsa Tablosu ve Mahalle Analitiği">
+  <div class="borsa-top-bar">
+    <div class="borsa-nav-group">
+      <button type="button" class="mode-tab" onclick="calismaModuSec('split')">🗺️ Haritaya Dön</button>
+      <button type="button" class="mode-tab" onclick="calismaModuSec('hastane')">🏥 Eczane Radarı</button>
+      <button type="button" class="mode-tab active" aria-current="page">📊 Ekonometrik Tablo</button>
+    </div>
+    <div class="borsa-nav-group">
+      <button type="button" class="top-cmp-drawer-btn" onclick="enIyi3DukkaniVeyaSepetiAc()">⚖️ Kıyasla</button>
+      <button type="button" class="theme-toggle-btn" onclick="temaDegistir()" title="Koyu / Açık Tema Geçişi" aria-label="Tema Değiştir">🌓</button>
+    </div>
+  </div>
   <div class="borsa-kpi-row">
     <div class="borsa-kpi-box">
       <span class="k-lbl">📊 Aktif Filtreli Portföy & Hacim</span>
@@ -3796,7 +4054,7 @@ function galeriModalAc(ilanId) {
       .tv-db-strip { background: var(--bento-box); padding: 8px 11px; border-radius: 9px; border: 1px solid var(--border-strong); display: grid; grid-template-columns: auto auto 155px 1fr auto; gap: 8px; align-items: center; }
       .tv-db-strip input[type="number"], .tv-db-strip input[type="text"] { background: var(--surface-solid) !important; color: var(--text) !important; border: 1px solid var(--border-strong) !important; height: 30px; font-size: 11.5px; }
       @media (max-width: 820px) {
-        .tv-modal-tabs { grid-template-columns: repeat(2, 1fr); }
+        .tv-modal-tabs { grid-template-columns: repeat(2, 1fr); top: -10px; }
         .tv-db-strip { grid-template-columns: 1fr; }
       }
     </style>
@@ -3804,7 +4062,7 @@ function galeriModalAc(ilanId) {
     <!-- SABİT ÜST TRADINGVIEW FİNANSAL ÖZET & TERMOMETRE KARTI -->
     <div class="tv-modal-top-card">
       <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
-        <div style="flex:1; min-width:240px;">
+        <div class="tv-head-row-wrap" style="flex:1; min-width:240px;">
           <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-bottom:3px;">
             <span style="background:rgba(16,185,129,0.16); color:var(--green); border:1px solid rgba(16,185,129,0.35); padding:2px 8px; border-radius:6px; font-size:10.5px; font-weight:900;">${x.kategori || 'Mülk'}</span>
             <span style="font-size:11.5px; color:var(--primary); font-weight:800;">📍 ${x.ilce} / ${x.mahalle} • ${x.konum_yontemi} (Güven: %${x.konum_guven})</span>
@@ -3829,7 +4087,7 @@ function galeriModalAc(ilanId) {
       </div>
 
       <!-- TradingView Termometre Barı + 4 Ana KPI -->
-      <div style="display:grid; grid-template-columns: 1.15fr 2fr; gap:10px; align-items:stretch;">
+      <div class="tv-thermo-kpi-grid">
         <div class="tv-thermo-box" style="justify-content:center;">
           <div class="tv-thermo-top">
             <span>İstenen: <b>${x.kisa_fiyat || x.fiyat_str}</b></span>
@@ -3846,7 +4104,7 @@ function galeriModalAc(ilanId) {
           </div>
         </div>
 
-        <div style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:8px; font-size:11.2px;">
+        <div class="tv-kpi-3grid">
           <div style="background:var(--bento-box); padding:7px 9px; border-radius:8px; border-left:3px solid #f59e0b;">
             <div style="color:var(--muted); font-size:9.8px; font-weight:700;">GELİR / BKÇ & AYAK PUANI</div>
             <div style="font-weight:900; font-size:12.5px; color:var(--text); margin-top:1px;">${x.bkc_yil ? `BKÇ ${x.bkc_yil} Yıl (%${x.brut_getiri_pct || '-'})` : (x.amortisman_str && x.amortisman_str !== '-' ? `${x.amortisman_str} Amortisman` : `Ayak: ${x.yaya_ayak_puani || 0}/10`)}</div>
@@ -3899,7 +4157,7 @@ function galeriModalAc(ilanId) {
           <div style="font-size:12.5px; font-weight:800; color:var(--green);">🚶 Denizli Google Street View Veritabanı — 4 Yönlü Gerçek Sokak Fotoğrafları (1024x512)</div>
           <div style="font-size:11.5px; font-weight:700; color:var(--text-sec);">Sokak/Kapı No: <b>${x.google_streetview_adres || 'Koordinat Doğrulandı'}</b></div>
         </div>
-        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px;">
+        <div class="tv-sv-4grid">
           ${svGercekHtml}
         </div>
       </div>
@@ -3908,12 +4166,12 @@ function galeriModalAc(ilanId) {
           <div style="font-size:12px; font-weight:800; color:var(--accent);">1️⃣ Canlı Google Maps Kuş Bakışı Hibrit İframe (z=19)</div>
           <div id="lazy-gmap-box-${x.ilan_id}" style="width:100%; height:240px; border-radius:8px; position:relative; overflow:hidden; border:1px solid var(--border);">
             <img src="${x.uydu_z19_tile}" style="width:100%; height:100%; object-fit:cover; filter:brightness(0.85);" alt="Uydu Önizleme" />
-            <button type="button" onclick="this.parentElement.innerHTML='<iframe src=\\'${x.embed_harita_url}\\' style=\\'width:100%; height:240px; border:0; border-radius:8px;\\'></iframe>'" style="position:absolute; inset:0; margin:auto; width:max-content; height:36px; padding:0 16px; border-radius:999px; background:var(--primary); color:#fff; border:1.5px solid #fff; font-size:11.5px; font-weight:900; cursor:pointer; box-shadow:0 6px 20px rgba(0,0,0,0.6);">🗺️ Canlı Etkileşimli Google Haritayı Başlat</button>
+            <button type="button" onclick="this.parentElement.innerHTML='<iframe src=\\'${x.embed_harita_url}\\' style=\\'width:100%; height:240px; border:0; border-radius:8px;\\'></iframe>'" style="position:absolute; inset:0; margin:auto; width:max-content; max-width:90%; height:38px; padding:0 14px; border-radius:999px; background:var(--primary); color:#fff; border:1.5px solid #fff; font-size:11.5px; font-weight:900; cursor:pointer; box-shadow:0 6px 20px rgba(0,0,0,0.6);">🗺️ Canlı Etkileşimli Google Haritayı Başlat</button>
           </div>
         </div>
         <div class="quad-box">
           <div style="font-size:12px; font-weight:800; color:var(--green);">2️⃣ 4'lü Çoklu-Katman Kuş Bakışı Uydu & Sokak Karoları (z18/z19/z17)</div>
-          <div style="display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:6px; height:240px;">
+          <div class="tv-tile-2x2">
             <a href="${x.uydu_url}" target="_blank" style="position:relative; border-radius:7px; overflow:hidden; border:1px solid rgba(52,211,153,0.4);">
               <img src="${x.uydu_z18_tile}" style="width:100%; height:100%; object-fit:cover;" alt="z18 Parsel" />
               <span style="position:absolute; bottom:3px; left:3px; background:rgba(0,0,0,0.82); color:#fff; font-size:9.5px; padding:2px 5px; border-radius:4px;">🛰️ z18 Saf Uydu Parsel</span>
@@ -3950,7 +4208,7 @@ function galeriModalAc(ilanId) {
       ${_aiTezKartiHtml(x.ai_notlari, x.ai_kategori_sinifi)}
       <div class="quad-box">
         <div style="font-size:12.5px; font-weight:800; color:var(--purple);">🤖 Multimodal AI Görsel, Tadilat, İç Mimari Estetik, Tabela OCR ve Konum Ekspertizi</div>
-        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px; font-size:11.5px;">
+        <div class="tv-ai-2grid">
           <div style="background:var(--bento-box); color:var(--text); padding:10px; border-radius:8px; border-left:3px solid #10b981;">
             <b>📍 AI Street View & Tam Adres Tespiti:</b><br>
             ${x.ai_tam_adres_notu || x.gorsel_konum_eslestirme_notu || 'Koordinat ve uydu/sokak görünümü üzerinden doğrulandı.'}
@@ -4055,6 +4313,7 @@ function karsilastirmaModalAc() {
   `).join('');
 
   document.getElementById('karsilastirModalIcerik').innerHTML = `
+    <div class="cmp-table-wrap" tabindex="0" role="region" aria-label="Yan Yana İlan Karşılaştırma Tablosu">
     <table class="cmp-table">
       <tr><th>İlan & Lokasyon</th>${sutunBasliklar}</tr>
       <tr><th>Fiyat & Adil Değer (P50)</th>${secililer.map(x => `<td class="${x.fiyat === enDusukFiyat ? 'best-cell' : ''}"><b>${x.fiyat_str}</b> ${x.fiyat === enDusukFiyat ? '🏆' : ''}<br><span style="font-size:10.5px; color:var(--muted);">Adil P50: <b>${x.adil_fiyat_str || '-'}</b></span></td>`).join('')}</tr>
@@ -4082,6 +4341,7 @@ function karsilastirmaModalAc() {
       <tr><th>🚶 Yaya (Ayak) & Cadde/Köşe</th>${secililer.map(x => `<td>🚶 Yaya Ayak Puanı: <b>${x.yaya_ayak_puani ?? 0}/10</b><br>🛣️ ${x.det_cadde_ustu ? '<b>Cadde Üstü</b>' : 'Ara Sokak'}${x.det_kosebasi ? ' • 📐 <b>Köşebaşı</b>' : ''} ${x.ana_cadde_m !== undefined && x.ana_cadde_m !== null ? `(Caddeye ${x.ana_cadde_m}m)` : ''}</td>`).join('')}</tr>
       <tr><th>Hızlı Aksiyon</th>${secililer.map(x => `<td><button class="btn-primary" onclick="document.getElementById('karsilastirModal').close(); galeriModalAc('${x.ilan_id}')">🔍 Tam Analiz & Galeri</button> <a class="btn-outline" href="${x.url}" target="_blank">Sahibinden ↗</a></td>`).join('')}</tr>
     </table>
+    </div>
   `;
   document.getElementById('karsilastirModal').showModal();
 }
@@ -5076,6 +5336,26 @@ window.kartStiliSec = kartStiliSec;
     .tv-sub-intel { display: flex; align-items: center; justify-content: space-between; gap: 4px; flex-wrap: wrap; font-size: 9.8px; color: var(--text-sec); padding: 0 2px; }
     .tv-sub-badges { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
     .tv-mini-tag { display: inline-flex; align-items: center; gap: 2.5px; padding: 1px 5.5px; border-radius: 5px; font-size: 9.5px; font-weight: 750; background: var(--bento-box); border: 1px solid var(--border); white-space: nowrap; }
+    @media (max-width: 820px) {
+      .floating-panel-head { height: auto !important; min-height: 44px !important; padding: 5px 10px !important; }
+      #km-alan { max-height: 24dvh !important; }
+      #komuta-merkezi { padding: 6px 10px 7px; gap: 5px; }
+      #komuta-merkezi .km-hizli-strip .jump-btn { height: 30px; font-size: 10.4px !important; }
+      .canli-bar-gomulu { padding: 5px 8px; }
+    }
+    @media (max-width: 460px) {
+      .km-nav-grid { grid-template-columns: 1fr; gap: 5px; }
+      #komuta-merkezi .km-hizli-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .floating-panel-head .brand-title { font-size: 11px !important; }
+    }
+    @media (pointer: coarse) {
+      .km-head-actions button { min-height: 36px !important; height: auto !important; padding: 0 9px !important; }
+      #komuta-merkezi .mode-tab, #komuta-merkezi .tam-km-toggle button { min-height: 38px !important; height: auto !important; font-size: 10.8px !important; }
+      #komuta-merkezi #f-arama { height: 42px !important; font-size: 16px !important; }
+      .km-inline-clear { height: 32px; font-size: 10.8px; }
+      #komuta-merkezi .km-hizli-strip .jump-btn { min-height: 36px !important; height: auto !important; font-size: 10.6px !important; }
+      .canli-bar-gomulu button { min-height: 34px; padding: 4px 9px; font-size: 10.6px; }
+    }
   `;
   document.head.appendChild(stil);
 
@@ -6085,7 +6365,7 @@ async function sektorUyumYukle(iid) {
       </div>` : '';
     const ki = s.kent_iktisadi || {};
     const kiHtml = (ki.alonso_yerel_kira_m2_tl != null) ? `
-      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-bottom:10px;">
+      <div class="tv-ki-4grid">
         <div style="background:var(--bento-box);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:7px;padding:7px 9px;">
           <div style="font-size:9.5px;font-weight:700;color:var(--muted);">🛣️ Space Syntax (Sokak Hiyerarşisi)</div>
           <div style="font-size:12px;font-weight:850;color:var(--primary);margin-top:1px;">${ki.space_syntax_arter_skoru >= 0.8 ? 'Ana Arter / Cadde (' + ki.space_syntax_arter_skoru + ')' : (ki.space_syntax_arter_skoru >= 0.45 ? 'Toplayıcı Cadde (' + ki.space_syntax_arter_skoru + ')' : 'Mahalle İçi Sokak (' + ki.space_syntax_arter_skoru + ')')}</div>
@@ -6263,16 +6543,16 @@ function kurumsalProKutusuUret(x, parcali = false) {
     </div>
     <div class="quad-box">
       <div style="font-size:12.5px; font-weight:850; color:var(--primary); margin-bottom:6px;">🧠 SiteZeus — 8 Ana Sektör Hızlı Uygunluk Matrisi</div>
-      <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px;">
+      <div class="tv-sektor-4grid">
         ${sektorBarsHtml}
       </div>
     </div>
     <div class="quad-box">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:6px;">
         <b style="color:var(--green); font-size:12.5px;">🚶 Placer.ai — 250m / 500m / 1km Çevre POI & Yaya Çekim Karnesi</b>
         <span style="background:rgba(16,185,129,0.16); color:var(--green); border:1px solid rgba(16,185,129,0.35); padding:2px 9px; border-radius:999px; font-size:11px; font-weight:900;">Çekim Gücü: ${poi.cekimSkoru}/99</span>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; font-size:11px; margin-bottom:8px; text-align:center;">
+      <div class="tv-3col-grid" style="font-size:11px; margin-bottom:8px; text-align:center;">
         <div style="background:var(--bento-box); padding:8px; border-radius:7px; border:1px solid rgba(16,185,129,0.35);">
           <div style="color:var(--green); font-weight:900; font-size:14px;">${poi.sayac250.toplam} POI</div>
           <div style="color:var(--muted); font-size:10px; font-weight:700;">250m (3 dk Yürüme)</div>
@@ -6318,11 +6598,11 @@ function kurumsalProKutusuUret(x, parcali = false) {
       </div>
     </div>
     <div class="quad-box">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:6px;">
         <b style="color:var(--amber); font-size:12.5px;">💰 HouseCanary ARV (Tadilat Sonrası Değer) & Reonomy Mükerrer İlan Dedektörü</b>
         <span style="background:rgba(245,158,11,0.16); color:var(--amber); border:1px solid rgba(245,158,11,0.35); padding:2px 9px; border-radius:999px; font-size:11px; font-weight:900;">Pazarlık Skoru: ${x.acil_satici_skoru || 35}/99</span>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; font-size:11.5px; text-align:center; margin-bottom:8px;">
+      <div class="tv-3col-grid" style="font-size:11.5px; text-align:center; margin-bottom:8px;">
         <div style="background:var(--bento-box); padding:8px; border-radius:7px; border:1px solid var(--border);">
           <div style="color:var(--muted); font-size:10px; font-weight:700;">Tahmini Tadilat Bütçesi</div>
           <div style="color:var(--amber); font-weight:900; font-size:13px; margin-top:2px;">${arv.tadilat_tl > 0 ? arv.tadilat_tl.toLocaleString('tr-TR') + ' ₺' : '0 ₺ (Masrafsız / Bakımlı)'}</div>
