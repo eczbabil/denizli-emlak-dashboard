@@ -2792,7 +2792,6 @@ try {
           <button class="jump-btn" id="chip-arv" onclick="hizliCipToggle('arv')" title="HouseCanary: Tadilat Sonrası ARV Net Kârı >= %25">🛠️ ARV Flip (<span id="cnt-arv">0</span>)</button>
           <button class="jump-btn" id="chip-mukerrer" onclick="hizliCipToggle('mukerrer')" title="Reonomy: Aynı Binada / <45m İçinde Birden Fazla İlan">🔁 Mükerrer (<span id="cnt-mukerrer">0</span>)</button>
           <button class="jump-btn" id="chip-svdogru" onclick="hizliCipToggle('svdogru')" title="Gemini AI + 360° Street View İncelendi">✅ AI+SV İncelendi (<span id="cnt-svdogru">0</span>)</button>
-          <button class="jump-btn" id="chip-deepseek" onclick="hizliCipToggle('deepseek')" title="DeepSeek Tam Kapsamlı İncelenenler">🤖 DeepSeek (<span id="cnt-deepseek">0</span>)</button>
           <!-- KURUMSAL-PRO-MODULLER:SON -->
                                                                                         </div>
       </div>
@@ -5272,10 +5271,10 @@ window.kartStiliSec = kartStiliSec;
       color: #fff;
       border-color: var(--accent);
     }
-    /* Satır 3: 4 Eşit Sütunlu Kesintisiz TradingView Hızlı Filtre Izgarası */
+    /* Satır 3: 3 Eşit Sütunlu Kesintisiz TradingView Hızlı Filtre Izgarası */
     #komuta-merkezi .km-hizli-strip {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 4.5px;
       width: 100%;
     }
@@ -5383,7 +5382,7 @@ window.kartStiliSec = kartStiliSec;
     }
     @media (max-width: 460px) {
       .km-nav-grid { grid-template-columns: 1fr; gap: 5px; }
-      #komuta-merkezi .km-hizli-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      #komuta-merkezi .km-hizli-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .floating-panel-head .brand-title { font-size: 11px !important; }
     }
     @media (pointer: coarse) {
@@ -5457,16 +5456,15 @@ window.kartStiliSec = kartStiliSec;
     kutu.appendChild(araWrap);
   }
 
-  // 4) Satır 3: 4 Eşit Sütunlu Kesintisiz TradingView Hızlı Filtre Izgarası (Hiçbir buton sağdan kesilmez!)
+  // 4) Satır 3: 3 Eşit Sütunlu Kesintisiz TradingView Hızlı Filtre Izgarası (Hiçbir buton sağdan kesilmez!)
   const hizliBar = document.createElement('div');
   hizliBar.className = 'km-hizli-strip';
   const kisaEtiketMap = {
-    'chip-deepseek': '🤖 DeepSeek (<span id="cnt-deepseek">0</span>)',
     'chip-kelepir': '💎 Kelepir (<span id="cnt-kelepir">0</span>)',
     'chip-acil': '🔥 Acil (<span id="cnt-acil">0</span>)',
     'btn-kadraj-filtre': '📐 Harita Alanı'
   };
-  ['chip-deepseek', 'chip-kelepir', 'chip-acil', 'btn-kadraj-filtre'].forEach(id => {
+  ['chip-kelepir', 'chip-acil', 'btn-kadraj-filtre'].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
       if (kisaEtiketMap[id]) el.innerHTML = kisaEtiketMap[id];
@@ -6767,14 +6765,13 @@ cipEslesiyorMu = function(x, anahtar) {
   if (anahtar === 'arv') return x.arv_analiz && Number(x.arv_analiz.kar_yuzde || 0) >= 18 && Number(x.arv_analiz.net_kar_tl || 0) > 150000;
   if (anahtar === 'mukerrer') return Number(x.mukerrer_sayisi || 0) > 0;
   if (anahtar === 'svdogru') return Boolean(x.ai_gorsel_incelendi) || Boolean(x.ai_konum_sonuc) || Boolean(x.ai_konum_gerekce);
-  if (anahtar === 'deepseek') return Boolean(x.deepseek_v2);
   return _eskiCipEslesiyorMu(x, anahtar);
 };
 
 const _eskiHizliCipSayac = hizliCipSayaclariniGuncelle;
 hizliCipSayaclariniGuncelle = function(bazListe) {
   _eskiHizliCipSayac(bazListe);
-  ['acil', 'arv', 'mukerrer', 'svdogru', 'deepseek'].forEach(k => {
+  ['acil', 'arv', 'mukerrer', 'svdogru'].forEach(k => {
     const el = document.getElementById('cnt-' + k);
     if (el) el.innerText = bazListe.filter(x => cipEslesiyorMu(x, k)).length;
   });
