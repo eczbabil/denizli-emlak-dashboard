@@ -2620,6 +2620,7 @@ try {
               </div>
             </div>
           </details>
+          <details class="sh-acc" id="acc-imar"><summary>İmar Durumu (Arsa/Tarla) <span class="sh-acc-badge" id="bdg-imar" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-imar"><legend class="visually-hidden">İmar Durumu</legend></fieldset></div></details>
           <details class="sh-acc"><summary>Oda Sayısı <span class="sh-acc-badge" id="bdg-oda" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-oda"><legend class="visually-hidden">Oda Sayısı</legend></fieldset></div></details>
           <details class="sh-acc"><summary>Bina Yaşı <span class="sh-acc-badge" id="bdg-yas" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-yas"><legend class="visually-hidden">Bina Yaşı</legend></fieldset></div></details>
           <details class="sh-acc"><summary>Kat Sayısı <span class="sh-acc-badge" id="bdg-katSayisi" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-katSayisi"><legend class="visually-hidden">Kat Sayısı</legend></fieldset></div></details>
@@ -5578,14 +5579,14 @@ function ekranYenile(haritaOdakla = false) {
       if (aciklamaDahil) {
         if (!x._aramaMetni) {
           x._aramaMetni = [
-            x.baslik, x.mahalle, x.ilce, x.ilan_id, x.kategori, x.emlak_tipi,
+            x.baslik, x.mahalle, x.ilce, x.ilan_id, x.kategori, x.emlak_tipi, x.imar_durumu,
             x.konum_yontemi, x.tabela_okuma, x.bina_yasi,
             x.ai_tadilat_notu, x.ai_estetik_notu, x.en_uygun_1_sektor, x.aciklama_metni
           ].map(v => v || "").join(" ").toLowerCase();
         }
         if (!x._aramaMetni.includes(ara)) return false;
       } else {
-        const dar = [x.baslik, x.mahalle, x.ilce, x.ilan_id, x.kategori, x.emlak_tipi].map(v => v || "").join(" ").toLowerCase();
+        const dar = [x.baslik, x.mahalle, x.ilce, x.ilan_id, x.kategori, x.emlak_tipi, x.imar_durumu].map(v => v || "").join(" ").toLowerCase();
         if (!dar.includes(ara)) return false;
       }
     }
@@ -6937,7 +6938,7 @@ setInterval(() => canliDurumKontrolEt(false), 25000);
     ranges: { fiyatMin: null, fiyatMax: null, birimMin: null, birimMax: null, m2bMin: null, m2bMax: null, m2nMin: null, m2nMax: null, m2aMin: null, m2aMax: null },
     mahalle: "",
     sets: {
-      oda: new Set(), yas: new Set(), katSayisi: new Set(), kat: new Set(), araKat: new Set(),
+      imar: new Set(), oda: new Set(), yas: new Set(), katSayisi: new Set(), kat: new Set(), araKat: new Set(),
       isitma: new Set(), banyo: new Set(), mutfak: new Set(), balkon: new Set(),
       asansor: new Set(), otopark: new Set(), esyali: new Set(), kullanim: new Set(),
       siteIci: new Set(), kredi: new Set(), tapu: new Set(), kimden: new Set(),
@@ -7024,6 +7025,7 @@ setInterval(() => canliDurumKontrolEt(false), 25000);
   }
 
   const SH_FACET_TANIM = [
+    { key: 'imar', fsId: 'sh-fs-imar', bdgId: 'bdg-imar', label: 'İmar Durumu', vals: x => x.imar_durumu ? [x.imar_durumu] : [] },
     { key: 'oda', fsId: 'sh-fs-oda', bdgId: 'bdg-oda', label: 'Oda', vals: x => x.oda_sayisi ? [x.oda_sayisi] : [] },
     { key: 'yas', fsId: 'sh-fs-yas', bdgId: 'bdg-yas', label: 'Bina Yaşı', vals: x => { const v = shYasGrubu(x.bina_yasi); return v ? [v] : []; } },
     { key: 'katSayisi', fsId: 'sh-fs-katSayisi', bdgId: 'bdg-katSayisi', label: 'Kat Sayısı', vals: x => x.kat_sayisi ? [String(x.kat_sayisi)] : [] },
@@ -7250,6 +7252,8 @@ setInterval(() => canliDurumKontrolEt(false), 25000);
     if (kEl && aEl && kEl.value !== aEl.value) kEl.value = aEl.value;
 
     const kat = (document.getElementById('f-kategori') || {}).value || 'TUMU';
+    const imarAcc = document.getElementById('acc-imar');
+    if (imarAcc && kat === 'TUM_ARSA') imarAcc.open = true;
     const ilceSecim = (document.getElementById('f-ilce') || {}).value || 'TUMU';
     const altKume = tam.filter(x => {
       if (ilceSecim === 'MERKEZ' && !x.merkez_mi) return false;
