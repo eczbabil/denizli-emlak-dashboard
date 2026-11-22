@@ -2610,7 +2610,13 @@ try {
         </div>
 
         <section class="sh-accordion" id="sh-acc-group" aria-label="Özellik Filtreleri">
-          <details class="sh-acc">
+          <details class="sh-acc" id="acc-imar" data-cats="arsa"><summary>İmar Durumu (Arsa/Tarla) <span class="sh-acc-badge" id="bdg-imar" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-imar"><legend class="visually-hidden">İmar Durumu</legend></fieldset></div></details>
+          <details class="sh-acc" data-cats="arsa"><summary>Kaks (Emsal) <span class="sh-acc-badge" id="bdg-kaks" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-kaks"><legend class="visually-hidden">Kaks</legend></fieldset></div></details>
+          <details class="sh-acc" data-cats="arsa"><summary>Gabari <span class="sh-acc-badge" id="bdg-gabari" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-gabari"><legend class="visually-hidden">Gabari</legend></fieldset></div></details>
+          <details class="sh-acc" data-cats="arsa"><summary>Kat Karşılığı <span class="sh-acc-badge" id="bdg-katKars" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-katKars"><legend class="visually-hidden">Kat Karşılığı</legend></fieldset></div></details>
+
+          <details class="sh-acc" data-cats="isyeri"><summary>İşyeri Türü <span class="sh-acc-badge" id="bdg-isyeriTur" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-isyeriTur"><legend class="visually-hidden">İşyeri Türü</legend></fieldset></div></details>
+          <details class="sh-acc" data-cats="konut,isyeri">
             <summary>Açık Alan m² <span class="sh-acc-badge" id="bdg-m2a" hidden>1</span></summary>
             <div class="sh-acc-body">
               <div class="sh-range-row">
@@ -2620,29 +2626,50 @@ try {
               </div>
             </div>
           </details>
-          <details class="sh-acc" id="acc-imar"><summary>İmar Durumu (Arsa/Tarla) <span class="sh-acc-badge" id="bdg-imar" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-imar"><legend class="visually-hidden">İmar Durumu</legend></fieldset></div></details>
-          <details class="sh-acc"><summary>Oda Sayısı <span class="sh-acc-badge" id="bdg-oda" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-oda"><legend class="visually-hidden">Oda Sayısı</legend></fieldset></div></details>
-          <details class="sh-acc"><summary>Bina Yaşı <span class="sh-acc-badge" id="bdg-yas" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-yas"><legend class="visually-hidden">Bina Yaşı</legend></fieldset></div></details>
-          <details class="sh-acc"><summary>Kat Sayısı <span class="sh-acc-badge" id="bdg-katSayisi" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-katSayisi"><legend class="visually-hidden">Kat Sayısı</legend></fieldset></div></details>
-          <details class="sh-acc"><summary>Bulunduğu Kat <span class="sh-acc-badge" id="bdg-kat" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-kat"><legend class="visually-hidden">Bulunduğu Kat</legend></fieldset></div></details>
-          <details class="sh-acc"><summary>Ara Kat <span class="sh-acc-badge" id="bdg-araKat" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-araKat"><legend class="visually-hidden">Ara Kat</legend></fieldset></div></details>
-          <details class="sh-acc"><summary>Isıtma <span class="sh-acc-badge" id="bdg-isitma" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-isitma"><legend class="visually-hidden">Isıtma</legend></fieldset></div></details>
+          <details class="sh-acc" data-cats="konut,isyeri"><summary>Oda / Bölüm Sayısı <span class="sh-acc-badge" id="bdg-oda" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-oda"><legend class="visually-hidden">Oda Sayısı</legend></fieldset></div></details>
+          <details class="sh-acc" data-cats="konut,isyeri,bina"><summary>Bina Yaşı <span class="sh-acc-badge" id="bdg-yas" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-yas"><legend class="visually-hidden">Bina Yaşı</legend></fieldset></div></details>
+          <details class="sh-acc" data-cats="konut,isyeri,bina"><summary>Kat Sayısı <span class="sh-acc-badge" id="bdg-katSayisi" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-katSayisi"><legend class="visually-hidden">Kat Sayısı</legend></fieldset></div></details>
+          <details class="sh-acc" data-cats="konut,isyeri"><summary>Bulunduğu Kat <span class="sh-acc-badge" id="bdg-kat" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-kat"><legend class="visually-hidden">Bulunduğu Kat</legend></fieldset></div></details>
+          <details class="sh-acc" data-cats="konut"><summary>Ara Kat <span class="sh-acc-badge" id="bdg-araKat" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-araKat"><legend class="visually-hidden">Ara Kat</legend></fieldset></div></details>
+          <details class="sh-acc" data-cats="konut,isyeri,bina"><summary>Isıtma <span class="sh-acc-badge" id="bdg-isitma" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-isitma"><legend class="visually-hidden">Isıtma</legend></fieldset></div></details>
+          <details class="sh-acc" data-cats="tumu"><summary>AI Fiziksel Kondisyon <span class="sh-acc-badge" id="bdg-aiSubject" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-aiSubject"><legend class="visually-hidden">AI Fiziksel Kondisyon</legend></fieldset></div></details>
 
-          <details class="sh-acc sh-sec-hidden" hidden><summary>Banyo Sayısı <span class="sh-acc-badge" id="bdg-banyo" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-banyo"><legend class="visually-hidden">Banyo Sayısı</legend></fieldset></div></details>
-          <details class="sh-acc sh-sec-hidden" hidden><summary>Mutfak <span class="sh-acc-badge" id="bdg-mutfak" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-mutfak"><legend class="visually-hidden">Mutfak</legend></fieldset></div></details>
-          <details class="sh-acc sh-sec-hidden" hidden><summary>Balkon <span class="sh-acc-badge" id="bdg-balkon" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-balkon"><legend class="visually-hidden">Balkon</legend></fieldset></div></details>
-          <details class="sh-acc sh-sec-hidden" hidden><summary>Asansör <span class="sh-acc-badge" id="bdg-asansor" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-asansor"><legend class="visually-hidden">Asansör</legend></fieldset></div></details>
-          <details class="sh-acc sh-sec-hidden" hidden><summary>Otopark <span class="sh-acc-badge" id="bdg-otopark" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-otopark"><legend class="visually-hidden">Otopark</legend></fieldset></div></details>
-          <details class="sh-acc sh-sec-hidden" hidden><summary>Eşyalı <span class="sh-acc-badge" id="bdg-esyali" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-esyali"><legend class="visually-hidden">Eşyalı</legend></fieldset></div></details>
-          <details class="sh-acc sh-sec-hidden" hidden><summary>Kullanım Durumu <span class="sh-acc-badge" id="bdg-kullanim" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-kullanim"><legend class="visually-hidden">Kullanım Durumu</legend></fieldset></div></details>
-          <details class="sh-acc sh-sec-hidden" hidden><summary>Site İçerisinde <span class="sh-acc-badge" id="bdg-siteIci" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-siteIci"><legend class="visually-hidden">Site İçerisinde</legend></fieldset></div></details>
-          <details class="sh-acc sh-sec-hidden" hidden><summary>Krediye Uygun <span class="sh-acc-badge" id="bdg-kredi" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-kredi"><legend class="visually-hidden">Krediye Uygun</legend></fieldset></div></details>
-          <details class="sh-acc sh-sec-hidden" hidden><summary>Tapu Durumu <span class="sh-acc-badge" id="bdg-tapu" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-tapu"><legend class="visually-hidden">Tapu Durumu</legend></fieldset></div></details>
-          <details class="sh-acc sh-sec-hidden" hidden><summary>Kimden <span class="sh-acc-badge" id="bdg-kimden" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-kimden"><legend class="visually-hidden">Kimden</legend></fieldset></div></details>
-          <details class="sh-acc sh-sec-hidden" hidden><summary>Takaslı <span class="sh-acc-badge" id="bdg-takas" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-takas"><legend class="visually-hidden">Takaslı</legend></fieldset></div></details>
-          <details class="sh-acc sh-sec-hidden" hidden><summary>İlan Tarihi <span class="sh-acc-badge" id="bdg-tarih" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-tarih"><legend class="visually-hidden">İlan Tarihi</legend></fieldset></div></details>
-          <details class="sh-acc sh-sec-hidden" hidden><summary>Fotoğraf, 360° SV & AI <span class="sh-acc-badge" id="bdg-medyaAi" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-medyaAi"><legend class="visually-hidden">Fotoğraf, 360° SV ve AI</legend></fieldset></div></details>
-          <details class="sh-acc sh-sec-hidden" hidden><summary>Harita & Yatırım Konumu <span class="sh-acc-badge" id="bdg-konumOz" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-konumOz"><legend class="visually-hidden">Harita ve Yatırım Konumu</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="konut" hidden><summary>Banyo Sayısı <span class="sh-acc-badge" id="bdg-banyo" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-banyo"><legend class="visually-hidden">Banyo Sayısı</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="konut" hidden><summary>Mutfak <span class="sh-acc-badge" id="bdg-mutfak" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-mutfak"><legend class="visually-hidden">Mutfak</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="konut" hidden><summary>Balkon <span class="sh-acc-badge" id="bdg-balkon" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-balkon"><legend class="visually-hidden">Balkon</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="konut,isyeri,bina" hidden><summary>Asansör <span class="sh-acc-badge" id="bdg-asansor" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-asansor"><legend class="visually-hidden">Asansör</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="konut,isyeri,bina" hidden><summary>Otopark <span class="sh-acc-badge" id="bdg-otopark" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-otopark"><legend class="visually-hidden">Otopark</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="konut" hidden><summary>Eşyalı <span class="sh-acc-badge" id="bdg-esyali" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-esyali"><legend class="visually-hidden">Eşyalı</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="konut,isyeri" hidden><summary>Kullanım Durumu <span class="sh-acc-badge" id="bdg-kullanim" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-kullanim"><legend class="visually-hidden">Kullanım Durumu</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="konut,isyeri" hidden><summary>Yapının Durumu <span class="sh-acc-badge" id="bdg-yapiDur" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-yapiDur"><legend class="visually-hidden">Yapının Durumu</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="konut" hidden><summary>Site İçerisinde <span class="sh-acc-badge" id="bdg-siteIci" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-siteIci"><legend class="visually-hidden">Site İçerisinde</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="konut" hidden><summary>Enerji Kimlik Belgesi <span class="sh-acc-badge" id="bdg-enerji" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-enerji"><legend class="visually-hidden">Enerji Kimlik Belgesi</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="isyeri" hidden><summary>Zemin Etüdü <span class="sh-acc-badge" id="bdg-zeminEtud" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-zeminEtud"><legend class="visually-hidden">Zemin Etüdü</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="isyeri" hidden><summary>Kiracılı <span class="sh-acc-badge" id="bdg-kiracili" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-kiracili"><legend class="visually-hidden">Kiracılı</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="konut,isyeri" hidden>
+            <summary>Aidat & Depozito (TL) <span class="sh-acc-badge" id="bdg-aidatDep" hidden>0</span></summary>
+            <div class="sh-acc-body">
+              <div style="font-size:10.5px; color:var(--text-sec); margin-bottom:4px;">Aidat (TL)</div>
+              <div class="sh-range-row" style="margin-bottom:6px;">
+                <div><label for="sh-aidat-min" class="visually-hidden">Min Aidat</label><input type="text" id="sh-aidat-min" class="sh-input" inputmode="numeric" placeholder="min ₺"></div>
+                <span class="sh-range-dash">–</span>
+                <div><label for="sh-aidat-max" class="visually-hidden">Max Aidat</label><input type="text" id="sh-aidat-max" class="sh-input" inputmode="numeric" placeholder="max ₺"></div>
+              </div>
+              <div style="font-size:10.5px; color:var(--text-sec); margin-bottom:4px;">Depozito (TL)</div>
+              <div class="sh-range-row">
+                <div><label for="sh-dep-min" class="visually-hidden">Min Depozito</label><input type="text" id="sh-dep-min" class="sh-input" inputmode="numeric" placeholder="min ₺"></div>
+                <span class="sh-range-dash">–</span>
+                <div><label for="sh-dep-max" class="visually-hidden">Max Depozito</label><input type="text" id="sh-dep-max" class="sh-input" inputmode="numeric" placeholder="max ₺"></div>
+              </div>
+            </div>
+          </details>
+          <details class="sh-acc sh-sec-hidden" data-cats="tumu" hidden><summary>Krediye Uygun <span class="sh-acc-badge" id="bdg-kredi" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-kredi"><legend class="visually-hidden">Krediye Uygun</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="tumu" hidden><summary>Tapu Durumu <span class="sh-acc-badge" id="bdg-tapu" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-tapu"><legend class="visually-hidden">Tapu Durumu</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="tumu" hidden><summary>Kimden <span class="sh-acc-badge" id="bdg-kimden" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-kimden"><legend class="visually-hidden">Kimden</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="tumu" hidden><summary>Takaslı <span class="sh-acc-badge" id="bdg-takas" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-takas"><legend class="visually-hidden">Takaslı</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="tumu" hidden><summary>İlan Tarihi <span class="sh-acc-badge" id="bdg-tarih" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-tarih"><legend class="visually-hidden">İlan Tarihi</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="tumu" hidden><summary>Fotoğraf & AI Değerleme <span class="sh-acc-badge" id="bdg-medyaAi" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-medyaAi"><legend class="visually-hidden">Fotoğraf ve AI</legend></fieldset></div></details>
+          <details class="sh-acc sh-sec-hidden" data-cats="tumu" hidden><summary>Harita & Yatırım Konumu <span class="sh-acc-badge" id="bdg-konumOz" hidden>0</span></summary><div class="sh-acc-body"><fieldset class="sh-fieldset" id="sh-fs-konumOz"><legend class="visually-hidden">Harita ve Yatırım Konumu</legend></fieldset></div></details>
         </section>
 
         <button type="button" class="sh-more-btn" id="sh-more-options-btn" aria-expanded="false" onclick="shDahaFazlaToggle()">Daha fazla seçenek göster</button>
@@ -5579,14 +5606,14 @@ function ekranYenile(haritaOdakla = false) {
       if (aciklamaDahil) {
         if (!x._aramaMetni) {
           x._aramaMetni = [
-            x.baslik, x.mahalle, x.ilce, x.ilan_id, x.kategori, x.emlak_tipi, x.imar_durumu,
+            x.baslik, x.mahalle, x.ilce, x.ilan_id, x.kategori, x.emlak_tipi, x.imar_durumu, x.kaks, x.gabari, x.isyeri_turu, x.yapinin_durumu, x.enerji_belgesi,
             x.konum_yontemi, x.tabela_okuma, x.bina_yasi,
             x.ai_tadilat_notu, x.ai_estetik_notu, x.en_uygun_1_sektor, x.aciklama_metni
           ].map(v => v || "").join(" ").toLowerCase();
         }
         if (!x._aramaMetni.includes(ara)) return false;
       } else {
-        const dar = [x.baslik, x.mahalle, x.ilce, x.ilan_id, x.kategori, x.emlak_tipi, x.imar_durumu].map(v => v || "").join(" ").toLowerCase();
+        const dar = [x.baslik, x.mahalle, x.ilce, x.ilan_id, x.kategori, x.emlak_tipi, x.imar_durumu, x.isyeri_turu].map(v => v || "").join(" ").toLowerCase();
         if (!dar.includes(ara)) return false;
       }
     }
@@ -6935,15 +6962,18 @@ setInterval(() => canliDurumKontrolEt(false), 25000);
 // === SAHİBİNDEN TARZI GELİŞMİŞ FİLTRE MOTORU ===
 (function() {
   const SH_DURUM = {
-    ranges: { fiyatMin: null, fiyatMax: null, birimMin: null, birimMax: null, m2bMin: null, m2bMax: null, m2nMin: null, m2nMax: null, m2aMin: null, m2aMax: null },
+    ranges: { fiyatMin: null, fiyatMax: null, birimMin: null, birimMax: null, m2bMin: null, m2bMax: null, m2nMin: null, m2nMax: null, m2aMin: null, m2aMax: null, aidatMin: null, aidatMax: null, depMin: null, depMax: null },
     mahalle: "",
     sets: {
-      imar: new Set(), oda: new Set(), yas: new Set(), katSayisi: new Set(), kat: new Set(), araKat: new Set(),
-      isitma: new Set(), banyo: new Set(), mutfak: new Set(), balkon: new Set(),
-      asansor: new Set(), otopark: new Set(), esyali: new Set(), kullanim: new Set(),
-      siteIci: new Set(), kredi: new Set(), tapu: new Set(), kimden: new Set(),
+      imar: new Set(), kaks: new Set(), gabari: new Set(), katKars: new Set(), isyeriTur: new Set(),
+      oda: new Set(), yas: new Set(), katSayisi: new Set(), kat: new Set(), araKat: new Set(),
+      isitma: new Set(), aiSubject: new Set(), banyo: new Set(), mutfak: new Set(), balkon: new Set(),
+      asansor: new Set(), otopark: new Set(), esyali: new Set(), kullanim: new Set(), yapiDur: new Set(),
+      siteIci: new Set(), enerji: new Set(), zeminEtud: new Set(), kiracili: new Set(),
+      kredi: new Set(), tapu: new Set(), kimden: new Set(),
       takas: new Set(), tarih: new Set(), medyaAi: new Set(), konumOz: new Set()
     },
+    sonKatAile: "tumu",
     sonImza: ""
   };
 
@@ -7024,14 +7054,32 @@ setInterval(() => canliDurumKontrolEt(false), 25000);
     return out;
   }
 
+  function shAiSubjectEtiketleri(x) {
+    const out = [];
+    const s = x.ai_subject || {};
+    if (s.ai_kondisyon_etiket) out.push(s.ai_kondisyon_etiket);
+    if (s.ai_mimari_etiket) out.push(s.ai_mimari_etiket);
+    if ((s.ai_tadilat_duzey_skor || 0) >= 2) out.push('Orta/Ağır Tadilat Gerekli');
+    else if (s.ai_tadilat_duzey_skor === 0) out.push('Tadilatsız / Hazır');
+    if (s.ai_cadde_ustu) out.push('AI: Cadde Üstü');
+    if (s.ai_kosebasi) out.push('AI: Köşebaşı');
+    if (s.ai_hukuki_risk) out.push('AI: Hukuki / Hisseli Risk');
+    return out;
+  }
+
   const SH_FACET_TANIM = [
     { key: 'imar', fsId: 'sh-fs-imar', bdgId: 'bdg-imar', label: 'İmar Durumu', vals: x => x.imar_durumu ? [x.imar_durumu] : [] },
+    { key: 'kaks', fsId: 'sh-fs-kaks', bdgId: 'bdg-kaks', label: 'Kaks', vals: x => x.kaks ? [x.kaks] : [] },
+    { key: 'gabari', fsId: 'sh-fs-gabari', bdgId: 'bdg-gabari', label: 'Gabari', vals: x => x.gabari ? [x.gabari] : [] },
+    { key: 'katKars', fsId: 'sh-fs-katKars', bdgId: 'bdg-katKars', label: 'Kat Karşılığı', vals: x => x.kat_karsiligi ? [x.kat_karsiligi] : [] },
+    { key: 'isyeriTur', fsId: 'sh-fs-isyeriTur', bdgId: 'bdg-isyeriTur', label: 'İşyeri Türü', vals: x => x.isyeri_turu ? [x.isyeri_turu] : [] },
     { key: 'oda', fsId: 'sh-fs-oda', bdgId: 'bdg-oda', label: 'Oda', vals: x => x.oda_sayisi ? [x.oda_sayisi] : [] },
     { key: 'yas', fsId: 'sh-fs-yas', bdgId: 'bdg-yas', label: 'Bina Yaşı', vals: x => { const v = shYasGrubu(x.bina_yasi); return v ? [v] : []; } },
     { key: 'katSayisi', fsId: 'sh-fs-katSayisi', bdgId: 'bdg-katSayisi', label: 'Kat Sayısı', vals: x => x.kat_sayisi ? [String(x.kat_sayisi)] : [] },
     { key: 'kat', fsId: 'sh-fs-kat', bdgId: 'bdg-kat', label: 'Bulunduğu Kat', vals: x => { const v = shKatGrubu(x.bulundugu_kat); return v ? [v] : []; } },
     { key: 'araKat', fsId: 'sh-fs-araKat', bdgId: 'bdg-araKat', label: 'Ara Kat', vals: x => x.ara_kat ? [x.ara_kat] : [] },
     { key: 'isitma', fsId: 'sh-fs-isitma', bdgId: 'bdg-isitma', label: 'Isıtma', vals: x => x.isitma ? [x.isitma] : [] },
+    { key: 'aiSubject', fsId: 'sh-fs-aiSubject', bdgId: 'bdg-aiSubject', label: 'AI Kondisyon', vals: shAiSubjectEtiketleri },
     { key: 'banyo', fsId: 'sh-fs-banyo', bdgId: 'bdg-banyo', label: 'Banyo', vals: x => x.banyo_sayisi ? [x.banyo_sayisi] : [] },
     { key: 'mutfak', fsId: 'sh-fs-mutfak', bdgId: 'bdg-mutfak', label: 'Mutfak', vals: x => x.mutfak ? [x.mutfak] : [] },
     { key: 'balkon', fsId: 'sh-fs-balkon', bdgId: 'bdg-balkon', label: 'Balkon', vals: x => x.balkon ? [x.balkon] : [] },
@@ -7039,7 +7087,11 @@ setInterval(() => canliDurumKontrolEt(false), 25000);
     { key: 'otopark', fsId: 'sh-fs-otopark', bdgId: 'bdg-otopark', label: 'Otopark', vals: x => { const v = shOtoparkGrubu(x.otopark); return v ? [v] : []; } },
     { key: 'esyali', fsId: 'sh-fs-esyali', bdgId: 'bdg-esyali', label: 'Eşyalı', vals: x => x.esyali ? [x.esyali] : [] },
     { key: 'kullanim', fsId: 'sh-fs-kullanim', bdgId: 'bdg-kullanim', label: 'Kullanım', vals: x => x.kullanim_durumu ? [x.kullanim_durumu] : [] },
+    { key: 'yapiDur', fsId: 'sh-fs-yapiDur', bdgId: 'bdg-yapiDur', label: 'Yapı Durumu', vals: x => x.yapinin_durumu ? [x.yapinin_durumu] : [] },
     { key: 'siteIci', fsId: 'sh-fs-siteIci', bdgId: 'bdg-siteIci', label: 'Site İçi', vals: x => x.site_ici ? [x.site_ici] : [] },
+    { key: 'enerji', fsId: 'sh-fs-enerji', bdgId: 'bdg-enerji', label: 'EKB', vals: x => x.enerji_belgesi ? [x.enerji_belgesi] : [] },
+    { key: 'zeminEtud', fsId: 'sh-fs-zeminEtud', bdgId: 'bdg-zeminEtud', label: 'Zemin Etüdü', vals: x => x.zemin_etudu ? [x.zemin_etudu] : [] },
+    { key: 'kiracili', fsId: 'sh-fs-kiracili', bdgId: 'bdg-kiracili', label: 'Kiracılı', vals: x => x.kiracili ? [x.kiracili] : [] },
     { key: 'kredi', fsId: 'sh-fs-kredi', bdgId: 'bdg-kredi', label: 'Kredi', vals: x => x.krediye_uygun ? [x.krediye_uygun] : [] },
     { key: 'tapu', fsId: 'sh-fs-tapu', bdgId: 'bdg-tapu', label: 'Tapu', vals: x => x.tapu_durumu ? [x.tapu_durumu] : [] },
     { key: 'kimden', fsId: 'sh-fs-kimden', bdgId: 'bdg-kimden', label: 'Kimden', vals: x => x.kimden ? [x.kimden] : [] },
@@ -7076,7 +7128,9 @@ setInterval(() => canliDurumKontrolEt(false), 25000);
       birimMin: shSayiOku('sh-birim-min'), birimMax: shSayiOku('sh-birim-max'),
       m2bMin: shSayiOku('sh-m2b-min'), m2bMax: shSayiOku('sh-m2b-max'),
       m2nMin: shSayiOku('sh-m2n-min'), m2nMax: shSayiOku('sh-m2n-max'),
-      m2aMin: shSayiOku('sh-m2a-min'), m2aMax: shSayiOku('sh-m2a-max')
+      m2aMin: shSayiOku('sh-m2a-min'), m2aMax: shSayiOku('sh-m2a-max'),
+      aidatMin: shSayiOku('sh-aidat-min'), aidatMax: shSayiOku('sh-aidat-max'),
+      depMin: shSayiOku('sh-dep-min'), depMax: shSayiOku('sh-dep-max')
     };
     const mEl = document.getElementById('sh-mahalle');
     SH_DURUM.mahalle = mEl ? String(mEl.value || '').trim().toLowerCase() : '';
@@ -7097,6 +7151,12 @@ setInterval(() => canliDurumKontrolEt(false), 25000);
     if (r.m2nMax !== null && m2n > r.m2nMax) return false;
     if (r.m2aMin !== null && m2a < r.m2aMin) return false;
     if (r.m2aMax !== null && m2a > r.m2aMax) return false;
+    if ((r.aidatMin !== null || r.aidatMax !== null) && x.aidat_tl == null) return false;
+    if (r.aidatMin !== null && x.aidat_tl < r.aidatMin) return false;
+    if (r.aidatMax !== null && x.aidat_tl > r.aidatMax) return false;
+    if ((r.depMin !== null || r.depMax !== null) && x.depozito_tl == null) return false;
+    if (r.depMin !== null && x.depozito_tl < r.depMin) return false;
+    if (r.depMax !== null && x.depozito_tl > r.depMax) return false;
     if (SH_DURUM.mahalle && !String(x.mahalle || '').toLowerCase().includes(SH_DURUM.mahalle)) return false;
 
     for (const def of SH_FACET_TANIM) {
@@ -7183,6 +7243,18 @@ setInterval(() => canliDurumKontrolEt(false), 25000);
       if (bdgM2a) bdgM2a.hidden = false;
       cipListesi.push({ label: `Açık m²: ${r.m2aMin ?? 0}–${r.m2aMax ?? '∞'}`, clear: () => { ['sh-m2a-min', 'sh-m2a-max'].forEach(id => { document.getElementById(id).value = ''; }); } });
     } else if (bdgM2a) bdgM2a.hidden = true;
+    const bdgAd = document.getElementById('bdg-aidatDep');
+    const aidatAktif = (r.aidatMin !== null || r.aidatMax !== null) ? 1 : 0;
+    const depAktif = (r.depMin !== null || r.depMax !== null) ? 1 : 0;
+    if (aidatAktif) {
+      toplamAktif++;
+      cipListesi.push({ label: `Aidat: ${r.aidatMin ?? 0}–${r.aidatMax ?? '∞'}`, clear: () => { ['sh-aidat-min', 'sh-aidat-max'].forEach(id => { document.getElementById(id).value = ''; }); } });
+    }
+    if (depAktif) {
+      toplamAktif++;
+      cipListesi.push({ label: `Depozito: ${r.depMin ?? 0}–${r.depMax ?? '∞'}`, clear: () => { ['sh-dep-min', 'sh-dep-max'].forEach(id => { document.getElementById(id).value = ''; }); } });
+    }
+    if (bdgAd) { bdgAd.textContent = String(aidatAktif + depAktif); bdgAd.hidden = (aidatAktif + depAktif) === 0; }
 
     if (SH_DURUM.mahalle) {
       toplamAktif++;
@@ -7252,8 +7324,29 @@ setInterval(() => canliDurumKontrolEt(false), 25000);
     if (kEl && aEl && kEl.value !== aEl.value) kEl.value = aEl.value;
 
     const kat = (document.getElementById('f-kategori') || {}).value || 'TUMU';
+    const catAile = kat === 'TUM_ARSA' ? 'arsa' : ((kat.includes('ISYERI') || kat.includes('İşyeri')) ? 'isyeri' : (kat === 'TUM_BINA' ? 'bina' : ((kat.includes('KONUT') || kat.includes('Konut')) ? 'konut' : 'tumu')));
+    if (SH_DURUM.sonKatAile !== catAile) {
+      SH_DURUM.sonKatAile = catAile;
+      if (catAile !== 'tumu') {
+        document.querySelectorAll('#sh-acc-group > details').forEach(d => {
+          const cats = (d.dataset.cats || 'tumu').split(',');
+          if (!cats.includes('tumu') && !cats.includes(catAile)) {
+            const fs = d.querySelector('fieldset');
+            const def = fs ? SH_FACET_TANIM.find(f => f.fsId === fs.id) : null;
+            if (def && SH_DURUM.sets[def.key]) SH_DURUM.sets[def.key].clear();
+          }
+        });
+      }
+    }
     const imarAcc = document.getElementById('acc-imar');
     if (imarAcc && kat === 'TUM_ARSA') imarAcc.open = true;
+    const moreAc = document.getElementById('sh-more-options-btn')?.getAttribute('aria-expanded') === 'true';
+    document.querySelectorAll('#sh-acc-group > details').forEach(d => {
+      if (d.querySelector('fieldset')) return;
+      const cats = (d.dataset.cats || 'tumu').split(',');
+      const catOk = catAile === 'tumu' || cats.includes('tumu') || cats.includes(catAile);
+      d.hidden = !catOk || (d.classList.contains('sh-sec-hidden') && !moreAc && catAile !== 'arsa');
+    });
     const ilceSecim = (document.getElementById('f-ilce') || {}).value || 'TUMU';
     const altKume = tam.filter(x => {
       if (ilceSecim === 'MERKEZ' && !x.merkez_mi) return false;
@@ -7264,12 +7357,19 @@ setInterval(() => canliDurumKontrolEt(false), 25000);
     for (const def of SH_FACET_TANIM) {
       const fs = document.getElementById(def.fsId);
       if (!fs) continue;
+      const detEl = fs.closest('details');
+      const cats = ((detEl && detEl.dataset.cats) || 'tumu').split(',');
+      const catOk = catAile === 'tumu' || cats.includes('tumu') || cats.includes(catAile);
       const sayac = {};
       altKume.forEach(x => {
         def.vals(x).forEach(v => { sayac[v] = (sayac[v] || 0) + 1; });
       });
       SH_DURUM.sets[def.key].forEach(v => { if (!sayac[v]) sayac[v] = 0; });
       const sirali = Object.keys(sayac).sort((a, b) => sayac[b] - sayac[a] || a.localeCompare(b, 'tr'));
+      if (detEl) {
+        const goster = catOk && sirali.length > 0 && (!detEl.classList.contains('sh-sec-hidden') || moreAc || catAile === 'arsa' || SH_DURUM.sets[def.key].size > 0);
+        detEl.hidden = !goster;
+      }
       const leg = fs.querySelector('legend');
       fs.innerHTML = '';
       if (leg) fs.appendChild(leg);
@@ -7335,15 +7435,15 @@ setInterval(() => canliDurumKontrolEt(false), 25000);
   window.shDahaFazlaToggle = function() {
     const btn = document.getElementById('sh-more-options-btn');
     const ac = btn && btn.getAttribute('aria-expanded') !== 'true';
-    document.querySelectorAll('#sh-acc-group details.sh-sec-hidden').forEach(d => { d.hidden = !ac; });
     if (btn) {
       btn.setAttribute('aria-expanded', ac ? 'true' : 'false');
       btn.textContent = ac ? 'Daha az seçenek göster' : 'Daha fazla seçenek göster';
     }
+    window.shFacetArayuzunuYenile(ILANLAR.filter(x => x.tam_bitti));
   };
 
   window.shFiltreTemizle = function(yenile = true) {
-    ['sh-fiyat-min', 'sh-fiyat-max', 'sh-birim-min', 'sh-birim-max', 'sh-m2b-min', 'sh-m2b-max', 'sh-m2n-min', 'sh-m2n-max', 'sh-m2a-min', 'sh-m2a-max', 'sh-mahalle', 'sh-kelime'].forEach(id => {
+    ['sh-fiyat-min', 'sh-fiyat-max', 'sh-birim-min', 'sh-birim-max', 'sh-m2b-min', 'sh-m2b-max', 'sh-m2n-min', 'sh-m2n-max', 'sh-m2a-min', 'sh-m2a-max', 'sh-aidat-min', 'sh-aidat-max', 'sh-dep-min', 'sh-dep-max', 'sh-mahalle', 'sh-kelime'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.value = '';
     });
