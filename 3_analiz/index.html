@@ -2952,10 +2952,17 @@ if (_shParams.get('api') === 'reset') {
   } catch (_) {}
 }
 const _yerelHostMu = (location.hostname === '127.0.0.1' || location.hostname === 'localhost');
-const _VARSAYILAN_TUNEL = location.hostname.endsWith('github.io') ? 'https://creates-menu-pin-cedar.trycloudflare.com' : '';
+const _VARSAYILAN_TUNEL = location.hostname.endsWith('github.io') ? 'https://inform-funeral-italia-forecasts.trycloudflare.com' : '';
 let SH_API_BASE = (() => {
   if (_yerelHostMu && !_shParams.get('api')) return '';
-  try { return (localStorage.getItem('emlak_api_base') || _VARSAYILAN_TUNEL || '').replace(/\/+$/, ''); } catch (_) { return _VARSAYILAN_TUNEL; }
+  try {
+    let kayitli = (localStorage.getItem('emlak_api_base') || '').replace(/\/+$/, '');
+    if (location.hostname.endsWith('github.io') && !_shParams.get('api') && _VARSAYILAN_TUNEL && kayitli.endsWith('.trycloudflare.com') && kayitli !== _VARSAYILAN_TUNEL) {
+      localStorage.setItem('emlak_api_base', _VARSAYILAN_TUNEL);
+      kayitli = _VARSAYILAN_TUNEL;
+    }
+    return (kayitli || _VARSAYILAN_TUNEL || '').replace(/\/+$/, '');
+  } catch (_) { return _VARSAYILAN_TUNEL; }
 })();
 let SH_API_TOKEN = (() => {
   if (_yerelHostMu && !_shParams.get('token')) return '';
