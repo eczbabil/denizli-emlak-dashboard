@@ -2924,11 +2924,14 @@ if (_shParams.get('api') === 'reset') {
     if (_pTok !== null && _pTok !== '') localStorage.setItem('emlak_api_token', _pTok);
   } catch (_) {}
 }
+const _yerelHostMu = (location.hostname === '127.0.0.1' || location.hostname === 'localhost');
 const _VARSAYILAN_TUNEL = location.hostname.endsWith('github.io') ? 'https://wax-civilization-settings-mechanics.trycloudflare.com' : '';
 let SH_API_BASE = (() => {
+  if (_yerelHostMu && !_shParams.get('api')) return '';
   try { return (localStorage.getItem('emlak_api_base') || _VARSAYILAN_TUNEL || '').replace(/\/+$/, ''); } catch (_) { return _VARSAYILAN_TUNEL; }
 })();
 let SH_API_TOKEN = (() => {
+  if (_yerelHostMu && !_shParams.get('token')) return '';
   try { return localStorage.getItem('emlak_api_token') || ''; } catch (_) { return ''; }
 })();
 function shApiUrl(yol) {
