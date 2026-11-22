@@ -2649,8 +2649,9 @@ if (_shParams.get('api') === 'reset') {
     if (_pTok !== null && _pTok !== '') localStorage.setItem('emlak_api_token', _pTok);
   } catch (_) {}
 }
+const _VARSAYILAN_TUNEL = location.hostname.endsWith('github.io') ? 'https://wax-civilization-settings-mechanics.trycloudflare.com' : '';
 let SH_API_BASE = (() => {
-  try { return (localStorage.getItem('emlak_api_base') || '').replace(/\/+$/, ''); } catch (_) { return ''; }
+  try { return (localStorage.getItem('emlak_api_base') || _VARSAYILAN_TUNEL || '').replace(/\/+$/, ''); } catch (_) { return _VARSAYILAN_TUNEL; }
 })();
 let SH_API_TOKEN = (() => {
   try { return localStorage.getItem('emlak_api_token') || ''; } catch (_) { return ''; }
@@ -3703,6 +3704,20 @@ window.modalSekmeSec = modalSekmeSec;
 function galeriModalAc(ilanId) {
   const x = ILANLAR.find(i => i.ilan_id === String(ilanId));
   if (!x) return;
+  if (SH_API_BASE && !x._tamYuklu && !x._tamDetayYukleniyor) {
+    x._tamDetayYukleniyor = true;
+    shApiFetch('/api/ilan-detay?ilan_id=' + encodeURIComponent(x.ilan_id))
+      .then(r => r.ok ? r.json() : null)
+      .then(pkt => {
+        x._tamDetayYukleniyor = false;
+        if (pkt && pkt.ilan) {
+          Object.assign(x, pkt.ilan, { _tamYuklu: true });
+          const dlg = document.getElementById('galeriModal');
+          if (dlg && dlg.open) galeriModalAc(ilanId);
+        }
+      })
+      .catch(() => { x._tamDetayYukleniyor = false; });
+  }
   const dialog = document.getElementById('galeriModal');
   document.getElementById('galeriModalBaslik').innerText = `🛰️ #${x.ilan_id} • ${x.ilce} / ${x.mahalle} — TradingView & CoStar Tam Ekspertiz Dosyası`;
   const pusulaButonlar = PUSULA_ACILARI.map(a => {
@@ -6506,7 +6521,10 @@ async function canliIlanlariCekVeGuncelle(zorla = false) {
   const rozet = document.getElementById('canli-db-durum-metni');
   if (rozet) rozet.innerText = '🔄 Canlı DB okunuyor...';
   try {
-    const res = await shApiFetch('/api/canli-ilanlar' + (zorla ? '?zorla=1' : ''));
+    const qs = [];
+    if (zorla) qs.push('zorla=1');
+    if (SH_API_BASE) qs.push('hafif=1');
+    const res = await shApiFetch('/api/canli-ilanlar' + (qs.length ? '?' + qs.join('&') : ''));
     if (!res.ok) return;
     const paket = await res.json();
     if (Array.isArray(paket.ilanlar) && paket.ilanlar.length > 0) {
@@ -6565,10 +6583,15 @@ function canliDurumBariniGuncelle(d) {
 
 async function canliDurumKontrolEt(otomatikIlanCek = false) {
   try {
+    if (location.hostname.endsWith('github.io') && !SH_API_BASE) {
+      canliDurumBariniGuncelle({ zaman: 'API URL Giriniz → 🔗', dosya_sayilari: {}, asamalar: {} });
+      return;
+    }
     const res = await shApiFetch('/api/canli-durum');
     if (!res.ok) {
-      if (res.status === 401 && location.hostname.endsWith('github.io')) {
-        canliDurumBariniGuncelle({ zaman: 'Yetkisiz (Token Gerekli)', dosya_sayilari: {}, asamalar: {} });
+      if (location.hostname.endsWith('github.io')) {
+        const mesaj = res.status === 401 ? '🔒 Token Gerekli → 🔗 API' : `⚠️ API HTTP ${res.status} → 🔗 API`;
+        canliDurumBariniGuncelle({ zaman: mesaj, dosya_sayilari: {}, asamalar: {} });
       }
       return;
     }
